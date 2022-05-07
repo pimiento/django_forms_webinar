@@ -1,0 +1,364 @@
+#+TITLE: Django Templates & Forms
+#+EMAIL: @pvavilin
+#+AUTHOR: @pvavilin
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smallest]
+#+LATEX_HEADER: \usetheme{default}
+#+LATEX_HEADER: \usecolortheme{crane}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
+#+LATEX_HEADER: \usebackgroundtemplate{\includegraphics[width=.99\paperwidth,height=.99\paperheight]{bg.jpeg}}
+#+OPTIONS: \n:t ^:nil
+
+* HTML
+  #+BEGIN_SRC html :exports code :tangle test.html
+    <html>
+      <head>
+        <title>Мир! Труд! Май!</title>
+      </head>
+      <body>
+        <center
+          onclick="alert('привет!')"
+          style="color:red;font-size:40px"
+        >
+          <!-- тут нужно вставить своё имя -->
+          <i>Привет, &lt;ИМЯ&gt;!</i>
+        </center>
+      </body>
+    </html>
+  #+END_SRC
+* Django templates
+  #+BEGIN_SRC html :exports code :tangle template.html
+    <html>
+      <head>
+        <title>Мир! Труд! Май!</title>
+      </head>
+      <body>
+        <center
+          onclick="alert('привет!')"
+          style="color:red;font-size:40px"
+          >
+          <i>Привет, {{ name }}!</i>
+        </center>
+      </body>
+    </html>
+  #+END_SRC
+* наследование
+  - extends :: взять за основу /расширяемый шаблон/ и /переопределить/ в нём нужные блоки. Остальное содержимое шаблона останется прежним.
+  - include :: вставить на место ${% include ... %}$ содержимое подключаемого шаблона.
+* передача переменных
+  - В шаблоне доступны объекты из middleware, например [[https://docs.djangoproject.com/en/4.0/topics/auth/default/#authentication-data-in-templates][user]]
+  - Нужные вам переменные вы передаёте из вьюхи во [[https://docs.djangoproject.com/en/4.0/topics/http/shortcuts/#render][время рендеринга]]
+* Дополнительная литература
+  - https://docs.djangoproject.com/en/2.2/ref/templates/builtins/
+  - https://docs.djangoproject.com/en/2.2/topics/templates/
+  - https://habr.com/ru/post/23132/?ysclid=l2hw076rbl
+* HTML формы
+  [[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form][*HTML-формы*]] это просто текст. И вообщем-то мы можем писать его вручную или, например, с использованием f-string в Python.
+  #+BEGIN_SRC html :exports code
+    <form action="." method="post">
+     <label for="message">Послание</label>
+     <input type='text' name="message"
+            value="сообщение"
+            maxlength="100" />
+     <input type="submit"
+           value="Отправить" />
+    </form>
+  #+END_SRC
+
+  [[file:simple_html_form.png]]
+* HTML формы
+  Формы могут быть более красивыми
+  #+ATTR_LATEX: :width .5\textwidth
+   [[file:html_form1.jpg]]
+
+* HTML формы
+  И очень разнообразными. Но писать такие разнообразные формы вручную это очень утомительно. На помощь нам приходят [[https://docs.djangoproject.com/en/3.2/topics/forms/][*Django Forms*]].
+  #+ATTR_LATEX: :width .35\textwidth
+  [[file:html_form.png]]
+
+* Django формы
+  #+BEGIN_SRC python :exports code
+    from django import forms
+
+    class MessageForm(forms.Form):
+        message = forms.CharField(
+            label='Послание',
+            max_length=100
+        )
+
+    form = MessageForm(
+        initial={'message': 'сообщение'}
+    )
+  #+END_SRC
+  /initial/ заполнит форму какими-то данными. При рендеринге это будет значение атрибута /value/ в HTML. Обычно мы передаём туда /request.POST/
+
+* Django формы
+  #+BEGIN_SRC html :exports code
+    <tr>
+      <th>
+        <label for="id_message">
+          Послание:
+        </label>
+      </th>
+      <td>
+        <input type="text"
+               name="message"
+               value="сообщение"
+               maxlength="100"
+               required
+               id="id_message" />
+      </td>
+    </tr>
+  #+END_SRC
+* Django формы
+** _[[https://docs.djangoproject.com/en/3.2/ref/forms/fields/#built-in-field-classes][Form Fields]]_
+  Поля формы в Django описываются классами Field, каждый из которых имеет своё представление в виде Widget-а.
+  file:builtin_fields.png
+* Bound / Unbond forms
+  Формы в /Django/ *[[https://docs.djangoproject.com/en/3.2/ref/forms/api/#bound-and-unbound-forms][могут быть в двух состояних]]*
+  - unbound :: — форма пустая
+  - bound :: — форма заполнена данными
+* Unbound
+  Форма не связана ни с какими данными
+  #+BEGIN_SRC python :exports code
+    form = MessageForm()
+    form.is_bound   # -> False
+  #+END_SRC
+* Bound
+  Форма /частично/ или /полностью/ заполнена
+  #+BEGIN_SRC python :exports code
+    # обычно мы передаём request.POST
+    form = MessageForm({
+        'message': 'foobar'
+    })
+    form.is_bound   # -> True
+  #+END_SRC
+* Валидация форм
+  [[https://docs.djangoproject.com/en/3.2/ref/forms/validation/][*Документация*]]
+  #+BEGIN_SRC python :exports code
+    form.is_valid()  # -> True / False
+    # в случае когда is_valid -> True,
+    # тогда у формы появляется атрибут
+    # cleaned_data, который содержит
+    # словарь со значениями полей
+    form.cleaned_data['field_name']
+    # если is_valid -> False
+    # то заполняется переменная
+    form.errors
+  #+END_SRC
+* Валидаторы
+  Пример написания своего валидатора
+  #+BEGIN_SRC python :exports code
+    from django.core.exceptions import (
+        ValidationError
+    )
+
+    def validate_even(value):
+        if value % 2 != 0:
+            raise Validationerror(
+                '%(value) нечётно',
+                params={'value': value}
+            )
+  #+END_SRC
+* Валидаторы
+  #+BEGIN_SRC python :exports code
+    from django import forms
+
+    class EvenNumbersForm(forms.Form):
+        number = forms.IntegerField(
+            validators=[validate_even]
+        )
+  #+END_SRC
+  /validators/ добавит валидаторы к уже существующему базовому валидатору /IntegerField/
+* Валидаторы
+  [[https://docs.djangoproject.com/en/3.2/ref/validators/][*Готовых валидаторов очень много!*]]
+  #+ATTR_LATEX: :width .34\textwidth
+  [[file:validators.png]]
+* Forms Workflow
+  [[file:form_handling_-_standard.png]]
+* Рендеринг форм вручную
+  - __[[https://www.geeksforgeeks.org/render-django-form-fields-manually/][Статья]]__
+  - __[[https://docs.djangoproject.com/en/4.0/topics/forms/#rendering-fields-manually][оф. документация]]__
+  #+BEGIN_SRC html :exports code
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label
+         for="{{form.subject.id_for_label}}" />
+        >
+          Email subject:
+        </label>
+        {{ form.subject }}
+    </div>
+  #+END_SRC
+* Безопасность
+  [[https://docs.djangoproject.com/en/3.2/topics/security/][*Настоятельно рекомендую ознакомиться с этой документацией*]]
+  \newline
+  https://docs.djangoproject.com/en/3.2/topics/security/
+* CSRF
+  На сайте может быть обычная кнопка, предлагающая вам посмотреть фотографии.
+  #+ATTR_LATEX: :width .4\textwidth
+  [[file:csrf.png]]
+
+* CSRF
+  А на самом деле там будет отправляться форма перевода денег с вашего аккаунта на аккаунт злоумышленника.
+  #+BEGIN_SRC html :exports code
+    <form
+      action="bank.com/transfer.do"
+      method="POST">
+      <input type="hidden"
+             name="acct" value="воришка"/>
+      <input type="hidden"
+             name="amount" value="$1kk"/>
+      <input type="submit"
+             value="View my pictures!"/>
+    </form>
+  #+END_SRC
+* CSRF
+  Но если на стороне банка используются csrf-токены в формах, то ничего страшного не случится. Запрос злоумышленника не может содержать нужное значение (случайное в рамках сессии) csrf-токена.
+  #+BEGIN_SRC html :exports code
+    <form method="post"
+          action="{% url signup %}">
+      {% csrf_token %}
+    </form>
+  #+END_SRC
+  file:csrf_html.png
+* ModelForm
+  [[https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/][*Прекрасная документация*]]
+* ModelForm
+  У ModelForm появляется метод *.save()*
+  #+BEGIN_SRC python :exports code
+    class NameForm(models.ModelForm):
+        class Meta:
+            model = Name
+
+    form = NameForm(request.POST)
+    # сохранить запись в базу данных
+    form.save()
+  #+END_SRC
+* ModelForm
+** save(commit=False)
+  #+BEGIN_SRC python :exports code
+    class NameForm(models.ModelForm):
+        class Meta:
+            model = Name
+
+    form = NameForm(request.POST)
+    # создаёт объект модели Name
+    # но не записываем его в базу
+    model = form.save(commit=False)
+  #+END_SRC
+* ModelForm
+  #+BEGIN_SRC python :exports code
+    class YaForm(models.ModelForm):
+        class Meta:
+            # содержит поля X, Y, Z
+            model = YaModel
+            fields = ['X', 'Y']
+
+    form = YaForm(request.POST)
+    # не передаст в модель Z,
+    # а значит в базу запишется
+    # пустое значение поля Z
+    from.save()
+  #+END_SRC
+* ModelForm
+  Один из вариантов решения — определить модель заранее
+  #+BEGIN_SRC python :exports code
+    model = YaModel(Z='foobar')
+    form = YaForm(
+        request.POST,
+        instance=model
+    )
+    # форма будет содержать все
+    # поля заполненными
+    form.save()
+  #+END_SRC
+* ModelForm
+  Или использовать /commit=False/ чтобы доопределить модель перед записью в БД.
+  #+BEGIN_SRC python :exports code
+    form = YaForm(request.POST)
+    model = form.save(commit=False)
+    model.Z = 'foobar'
+    model.save()
+  #+END_SRC
+* ModelForm
+  Допустим, мы определили модель
+  #+BEGIN_SRC python :exports code
+    class Article(models.Model):
+      headline = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+      )
+      content = models.TextField()
+  #+END_SRC
+* ModelForm
+  Если поле не перечислено в /fields/ или добавлено в /excludes/ в Meta-классе, то это поле будет исключено из данных передаваемых в модель.
+  #+BEGIN_SRC python :exports code
+    class ArticleForm(ModelForm):
+      slug = CharField(
+        validators=[validate_slug]
+      )
+
+      class Meta:
+        model = Article
+        # slug не попадёт в save()
+        fields = ['headline', 'content']
+  #+END_SRC
+* Widgets
+  Виджеты это то как формы будут представлены на web-страницы, то есть виджеты отвечают за генерацию HTML-кода для полей форм.
+  *[[https://docs.djangoproject.com/en/3.2/ref/forms/widgets/][Документация]]*
+  #+ATTR_LATEX: :width .16\textwidth
+  file:widgets.png
+* Widgets
+  Можно добавлять стили и другие атрибуты виджетам
+  #+BEGIN_SRC python :exports code
+    class CommentForm(forms.Form):
+      name = forms.CharField(
+        widget=forms.TextInput(
+          attrs={'class': 'special'}
+        )
+      )
+      url = forms.URLField()
+      comment = forms.CharField(
+        widget=forms.TextInput(
+          attrs={'size': '40'}
+        )
+      )
+  #+END_SRC
+* Widgets
+  #+BEGIN_SRC python :exports code
+    class CommentForm(ModelForm):
+      class Meta:
+        model = Comment
+        fields = (
+          'name', 'url', 'comment'
+        )
+        widgets = {
+          'name': forms.TextInput(
+            attrs={'class': 'special', 'rows': 20}
+          ),
+          'comment': forms.TextInput(
+            attrs={'size': '40'}
+          )
+        }
+  #+END_SRC
+* Widgets
+  #+BEGIN_SRC html :exports code
+    <input type="text" name="name"
+           class="special" required>
+
+    <input type="url" name="url"
+           required>
+
+    <input type="text" name="comment"
+           size="40" required>
+  #+END_SRC
+* Вопросы-ответы
+  #+ATTR_LATEX: :width .6\textwidth
+  [[file:questions.jpg]]
