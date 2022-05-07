@@ -48,7 +48,7 @@
   #+END_SRC
 * наследование
   - extends :: взять за основу /расширяемый шаблон/ и /переопределить/ в нём нужные блоки. Остальное содержимое шаблона останется прежним.
-  - include :: вставить на место ${% include ... %}$ содержимое подключаемого шаблона.
+  - include :: вставить на место *{% include ... %}* содержимое подключаемого шаблона.
 * передача переменных
   - В шаблоне доступны объекты из middleware, например [[https://docs.djangoproject.com/en/4.0/topics/auth/default/#authentication-data-in-templates][user]]
   - Нужные вам переменные вы передаёте из вьюхи во [[https://docs.djangoproject.com/en/4.0/topics/http/shortcuts/#render][время рендеринга]]
