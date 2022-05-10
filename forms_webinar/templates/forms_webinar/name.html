@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{# internationalization #}
+{% load i18n %}
+{# localization #}
+{% load l10n %}
+{% block content %}
+<p style="background-color:lightgrey">{{title}}</p>
+<br/>
+<hr style="background-color:navy;color:red;padding:1px;" />
+{% localize on %}
+<p style="margin-right:10pt;text-align:right">{{name}} | {% now "r" %}</p>
+{% endlocalize %}
+{% endblock %}

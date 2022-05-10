@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<p><center>
+    {% trans "List of names" %}
+</center></p>
+<ul>
+{% for name in names %}
+    <li><a href="{% url 'name' name.pk %}"><b>{{name}}</b></a></li>
+{% endfor %}
+</ul>
+{% endblock %}
