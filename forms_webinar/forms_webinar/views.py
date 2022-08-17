@@ -30,6 +30,8 @@ def name(request):
     )
 
 
+# если интересно что же лучше использовать обычные вьюхи или generic-views
+# https://spookylukey.github.io/django-views-the-right-way/index.html
 class NameCreateView(CreateView):
     """Create a Name"""
     model = NameModel
