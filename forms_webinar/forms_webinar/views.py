@@ -6,7 +6,7 @@ from django.utils.translation import gettext as _
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic.edit import (CreateView, DeleteView, UpdateView)
 from .models import NameModel
-from .forms import MessageForm, NameForm
+from .forms import MessageForm, NameForm, CreateNameForm
 
 
 def message(request):
@@ -35,7 +35,7 @@ def name(request):
 class NameCreateView(CreateView):
     """Create a Name"""
     model = NameModel
-    fields = ['name']
+    form_class = CreateNameForm
 
 
 class NameUpdateView(UpdateView):
@@ -53,6 +53,7 @@ class NameDeleteView(DeleteView):
 class NamesListView(generic.ListView):
     model = NameModel
     context_object_name = 'names'
+    template_name = "forms_webinar/list.html"
 
 
 def name_detail(request, pk):

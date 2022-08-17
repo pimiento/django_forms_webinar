@@ -1,0 +1,12 @@
+<h1>Имена</h1>
+<ul>
+    <li><a href="{% url 'list_names' %}">Главная</a></li>
+    <li><a href="{% url 'create_name' %}">Новое имя</a></li>
+</ul>
+<ul>
+    {% for name in object_list %}
+    <li>{{ name.name }} (<a href="{% url 'name' name.pk %}">{{ name.pk }}</a>)</li>
+    {% empty %}
+    <li>--Пусто--</li>
+    {% endfor %}
+</ul>

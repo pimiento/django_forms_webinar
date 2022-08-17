@@ -1,46 +1,47 @@
-- [HTML](#orgf415eae)
-- [Django templates](#orgaeb56cb)
-- [наследование](#orgacdb27b)
-- [передача переменных](#org3b2372a)
-- [Дополнительная литература](#org0a08c2b)
-- [HTML формы](#orgddead79)
-- [HTML формы](#orgd993e9a)
-- [HTML формы](#orgef5e15d)
-- [Django формы](#org427e979)
-- [Django формы](#org33ff481)
-- [Django формы](#org7d30b3d)
-  - [<span class="underline">[Form Fields](https://docs.djangoproject.com/en/3.2/ref/forms/fields/#built-in-field-classes)</span>](#org25cc5a4)
-- [Bound / Unbond forms](#org400b78d)
-- [Unbound](#org7d55449)
-- [Bound](#orgb21ce35)
-- [Валидация форм](#orga81b012)
-- [Валидаторы](#orgf56f52f)
-- [Валидаторы](#orgad0f1b2)
-- [Валидаторы](#orgf569918)
-- [Forms Workflow](#org5e149c9)
-- [Рендеринг форм вручную](#orgf531c54)
-- [Безопасность](#org18c125f)
-- [CSRF](#org6f271c2)
-- [CSRF](#orgfcb5582)
-- [CSRF](#orgd05e572)
-- [ModelForm](#org1736d18)
-- [ModelForm](#orgac07945)
-- [ModelForm](#orgb90f418)
-  - [save(commit=False)](#org244efb3)
-- [ModelForm](#org2bd1449)
-- [ModelForm](#orgade968f)
-- [ModelForm](#org3928e11)
-- [ModelForm](#org7d3063b)
-- [ModelForm](#orge823e93)
-- [Widgets](#orgde7ad8b)
-- [Widgets](#org388c054)
-- [Widgets](#org71b67f9)
-- [Widgets](#org86831b8)
-- [Вопросы-ответы](#orgf4f438c)
+- [HTML](#orgae4cd2e)
+- [Django templates](#org3dcbb84)
+- [наследование](#orgcd3c19a)
+- [передача переменных](#org867ac54)
+- [Дополнительная литература](#org655f5e8)
+- [HTML формы](#org4dc7d00)
+- [HTML формы](#org4aba72c)
+- [HTML формы](#org9195320)
+- [Django формы](#orgc559a42)
+- [Django формы](#org05ee131)
+- [Django формы](#org302fa98)
+  - [<span class="underline">[Form Fields](https://docs.djangoproject.com/en/3.2/ref/forms/fields/#built-in-field-classes)</span>](#org9c11e0e)
+- [Bound / Unbond forms](#org49c49cb)
+- [Unbound](#org14465c5)
+- [Bound](#orgc98c95e)
+- [Валидация форм](#org308c3c0)
+- [Валидаторы](#org0e3e49f)
+- [Валидаторы](#org4a6c67c)
+- [Валидаторы](#orgcd60a4c)
+- [Forms Workflow](#orgd7589de)
+- [Рендеринг форм вручную](#org4967799)
+- [Безопасность](#orgc4594a1)
+- [CSRF](#org473c328)
+- [CSRF](#org0420332)
+- [CSRF](#org36e5c6e)
+- [ModelForm](#orgad4cb99)
+- [ModelForm](#orgc61542b)
+- [ModelForm](#org339e09e)
+  - [save(commit=False)](#org61a585b)
+- [ModelForm](#org48d3243)
+- [ModelForm](#org165d60c)
+- [ModelForm](#org4f64408)
+- [ModelForm](#orgd271942)
+- [ModelForm](#orgf35deb0)
+- [Widgets](#org38364ac)
+- [Widgets](#orge18c9b7)
+- [Widgets](#orgc76767a)
+- [Widgets](#org10eac6b)
+- [Немного практики](#org4b907f0)
+- [Вопросы-ответы](#org8c7aa6b)
 
 
 
-<a id="orgf415eae"></a>
+<a id="orgae4cd2e"></a>
 
 # HTML
 
@@ -62,7 +63,7 @@
 ```
 
 
-<a id="orgaeb56cb"></a>
+<a id="org3dcbb84"></a>
 
 # Django templates
 
@@ -83,7 +84,7 @@
 ```
 
 
-<a id="orgacdb27b"></a>
+<a id="orgcd3c19a"></a>
 
 # наследование
 
@@ -91,7 +92,7 @@
 -   **include:** вставить на место **{% include &#x2026; %}** содержимое подключаемого шаблона.
 
 
-<a id="org3b2372a"></a>
+<a id="org867ac54"></a>
 
 # передача переменных
 
@@ -99,7 +100,7 @@
 -   Нужные вам переменные вы передаёте из вьюхи во [время рендеринга](https://docs.djangoproject.com/en/4.0/topics/http/shortcuts/#render)
 
 
-<a id="org0a08c2b"></a>
+<a id="org655f5e8"></a>
 
 # Дополнительная литература
 
@@ -108,11 +109,11 @@
 -   <https://habr.com/ru/post/23132/?ysclid=l2hw076rbl>
 
 
-<a id="orgddead79"></a>
+<a id="org4dc7d00"></a>
 
 # HTML формы
 
-[**HTML-формы**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) это просто текст. И вообщем-то мы можем писать его вручную или, например, с использованием f-string в Python.
+[**HTML-формы**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) это просто текст. И вообщем-то мы можем писать его вручную или, например, с использованием f-string в Python.  
 
 ```html
 <form action="." method="post">
@@ -125,28 +126,28 @@
 </form>
 ```
 
-![img](simple_html_form.png)
+![img](simple_html_form.png)  
 
 
-<a id="orgd993e9a"></a>
-
-# HTML формы
-
-Формы могут быть более красивыми
-
-![img](html_form1.jpg)
-
-
-<a id="orgef5e15d"></a>
+<a id="org4aba72c"></a>
 
 # HTML формы
 
-И очень разнообразными. Но писать такие разнообразные формы вручную это очень утомительно. На помощь нам приходят [**Django Forms**](https://docs.djangoproject.com/en/3.2/topics/forms/).
+Формы могут быть более красивыми  
 
-![img](html_form.png)
+![img](html_form1.jpg)  
 
 
-<a id="org427e979"></a>
+<a id="org9195320"></a>
+
+# HTML формы
+
+И очень разнообразными. Но писать такие разнообразные формы вручную это очень утомительно. На помощь нам приходят [**Django Forms**](https://docs.djangoproject.com/en/3.2/topics/forms/).  
+
+![img](html_form.png)  
+
+
+<a id="orgc559a42"></a>
 
 # Django формы
 
@@ -164,10 +165,10 @@ form = MessageForm(
 )
 ```
 
-*initial* заполнит форму какими-то данными. При рендеринге это будет значение атрибута *value* в HTML. Обычно мы передаём туда *request.POST*
+*initial* заполнит форму какими-то данными. При рендеринге это будет значение атрибута *value* в HTML. Обычно мы передаём туда *request.POST*  
 
 
-<a id="org33ff481"></a>
+<a id="org05ee131"></a>
 
 # Django формы
 
@@ -190,34 +191,34 @@ form = MessageForm(
 ```
 
 
-<a id="org7d30b3d"></a>
+<a id="org302fa98"></a>
 
 # Django формы
 
 
-<a id="org25cc5a4"></a>
+<a id="org9c11e0e"></a>
 
 ## <span class="underline">[Form Fields](https://docs.djangoproject.com/en/3.2/ref/forms/fields/#built-in-field-classes)</span>
 
-Поля формы в Django описываются классами Field, каждый из которых имеет своё представление в виде Widget-а.
-![img](builtin_fields.png)
+Поля формы в Django описываются классами Field, каждый из которых имеет своё представление в виде Widget-а.  
+![img](builtin_fields.png)  
 
 
-<a id="org400b78d"></a>
+<a id="org49c49cb"></a>
 
 # Bound / Unbond forms
 
-Формы в *Django* **[могут быть в двух состояних](https://docs.djangoproject.com/en/3.2/ref/forms/api/#bound-and-unbound-forms)**
+Формы в *Django* **[могут быть в двух состояних](https://docs.djangoproject.com/en/3.2/ref/forms/api/#bound-and-unbound-forms)**  
 
 -   **unbound:** — форма пустая
 -   **bound:** — форма заполнена данными
 
 
-<a id="org7d55449"></a>
+<a id="org14465c5"></a>
 
 # Unbound
 
-Форма не связана ни с какими данными
+Форма не связана ни с какими данными  
 
 ```python
 form = MessageForm()
@@ -225,11 +226,11 @@ form.is_bound   # -> False
 ```
 
 
-<a id="orgb21ce35"></a>
+<a id="orgc98c95e"></a>
 
 # Bound
 
-Форма *частично* или *полностью* заполнена
+Форма *частично* или *полностью* заполнена  
 
 ```python
 # обычно мы передаём request.POST
@@ -240,11 +241,11 @@ form.is_bound   # -> True
 ```
 
 
-<a id="orga81b012"></a>
+<a id="org308c3c0"></a>
 
 # Валидация форм
 
-[**Документация**](https://docs.djangoproject.com/en/3.2/ref/forms/validation/)
+[**Документация**](https://docs.djangoproject.com/en/3.2/ref/forms/validation/)  
 
 ```python
 form.is_valid()  # -> True / False
@@ -259,11 +260,11 @@ form.errors
 ```
 
 
-<a id="orgf56f52f"></a>
+<a id="org0e3e49f"></a>
 
 # Валидаторы
 
-Пример написания своего валидатора
+Пример написания своего валидатора  
 
 ```python
 from django.core.exceptions import (
@@ -279,7 +280,7 @@ def validate_even(value):
 ```
 
 
-<a id="orgad0f1b2"></a>
+<a id="org4a6c67c"></a>
 
 # Валидаторы
 
@@ -292,26 +293,26 @@ class EvenNumbersForm(forms.Form):
     )
 ```
 
-*validators* добавит валидаторы к уже существующему базовому валидатору *IntegerField*
+*validators* добавит валидаторы к уже существующему базовому валидатору *IntegerField*  
 
 
-<a id="orgf569918"></a>
+<a id="orgcd60a4c"></a>
 
 # Валидаторы
 
-[**Готовых валидаторов очень много!**](https://docs.djangoproject.com/en/3.2/ref/validators/)
+[**Готовых валидаторов очень много!**](https://docs.djangoproject.com/en/3.2/ref/validators/)  
 
-![img](validators.png)
+![img](validators.png)  
 
 
-<a id="org5e149c9"></a>
+<a id="orgd7589de"></a>
 
 # Forms Workflow
 
-![img](form_handling_-_standard.png)
+![img](form_handling_-_standard.png)  
 
 
-<a id="orgf531c54"></a>
+<a id="org4967799"></a>
 
 # Рендеринг форм вручную
 
@@ -332,29 +333,29 @@ class EvenNumbersForm(forms.Form):
 ```
 
 
-<a id="org18c125f"></a>
+<a id="orgc4594a1"></a>
 
 # Безопасность
 
-[**Настоятельно рекомендую ознакомиться с этой документацией**](https://docs.djangoproject.com/en/3.2/topics/security/)
-\newline
-<https://docs.djangoproject.com/en/3.2/topics/security/>
+[**Настоятельно рекомендую ознакомиться с этой документацией**](https://docs.djangoproject.com/en/3.2/topics/security/)  
+\newline  
+<https://docs.djangoproject.com/en/3.2/topics/security/>  
 
 
-<a id="org6f271c2"></a>
-
-# CSRF
-
-На сайте может быть обычная кнопка, предлагающая вам посмотреть фотографии.
-
-![img](csrf.png)
-
-
-<a id="orgfcb5582"></a>
+<a id="org473c328"></a>
 
 # CSRF
 
-А на самом деле там будет отправляться форма перевода денег с вашего аккаунта на аккаунт злоумышленника.
+На сайте может быть обычная кнопка, предлагающая вам посмотреть фотографии.  
+
+![img](csrf.png)  
+
+
+<a id="org0420332"></a>
+
+# CSRF
+
+А на самом деле там будет отправляться форма перевода денег с вашего аккаунта на аккаунт злоумышленника.  
 
 ```html
 <form
@@ -370,11 +371,11 @@ class EvenNumbersForm(forms.Form):
 ```
 
 
-<a id="orgd05e572"></a>
+<a id="org36e5c6e"></a>
 
 # CSRF
 
-Но если на стороне банка используются csrf-токены в формах, то ничего страшного не случится. Запрос злоумышленника не может содержать нужное значение (случайное в рамках сессии) csrf-токена.
+Но если на стороне банка используются csrf-токены в формах, то ничего страшного не случится. Запрос злоумышленника не может содержать нужное значение (случайное в рамках сессии) csrf-токена.  
 
 ```html
 <form method="post"
@@ -383,21 +384,21 @@ class EvenNumbersForm(forms.Form):
 </form>
 ```
 
-![img](csrf_html.png)
+![img](csrf_html.png)  
 
 
-<a id="org1736d18"></a>
-
-# ModelForm
-
-[**Прекрасная документация**](https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/)
-
-
-<a id="orgac07945"></a>
+<a id="orgad4cb99"></a>
 
 # ModelForm
 
-У ModelForm появляется метод **.save()**
+[**Прекрасная документация**](https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/)  
+
+
+<a id="orgc61542b"></a>
+
+# ModelForm
+
+У ModelForm появляется метод **.save()**  
 
 ```python
 class NameForm(models.ModelForm):
@@ -410,12 +411,12 @@ form.save()
 ```
 
 
-<a id="orgb90f418"></a>
+<a id="org339e09e"></a>
 
 # ModelForm
 
 
-<a id="org244efb3"></a>
+<a id="org61a585b"></a>
 
 ## save(commit=False)
 
@@ -431,7 +432,7 @@ model = form.save(commit=False)
 ```
 
 
-<a id="org2bd1449"></a>
+<a id="org48d3243"></a>
 
 # ModelForm
 
@@ -450,11 +451,11 @@ from.save()
 ```
 
 
-<a id="orgade968f"></a>
+<a id="org165d60c"></a>
 
 # ModelForm
 
-Один из вариантов решения — определить модель заранее
+Один из вариантов решения — определить модель заранее  
 
 ```python
 model = YaModel(Z='foobar')
@@ -468,11 +469,11 @@ form.save()
 ```
 
 
-<a id="org3928e11"></a>
+<a id="org4f64408"></a>
 
 # ModelForm
 
-Или использовать *commit=False* чтобы доопределить модель перед записью в БД.
+Или использовать *commit=False* чтобы доопределить модель перед записью в БД.  
 
 ```python
 form = YaForm(request.POST)
@@ -482,11 +483,11 @@ model.save()
 ```
 
 
-<a id="org7d3063b"></a>
+<a id="orgd271942"></a>
 
 # ModelForm
 
-Допустим, мы определили модель
+Допустим, мы определили модель  
 
 ```python
 class Article(models.Model):
@@ -499,11 +500,11 @@ class Article(models.Model):
 ```
 
 
-<a id="orge823e93"></a>
+<a id="orgf35deb0"></a>
 
 # ModelForm
 
-Если поле не перечислено в *fields* или добавлено в *excludes* в Meta-классе, то это поле будет исключено из данных передаваемых в модель.
+Если поле не перечислено в *fields* или добавлено в *excludes* в Meta-классе, то это поле будет исключено из данных передаваемых в модель.  
 
 ```python
 class ArticleForm(ModelForm):
@@ -518,21 +519,21 @@ class ArticleForm(ModelForm):
 ```
 
 
-<a id="orgde7ad8b"></a>
+<a id="org38364ac"></a>
 
 # Widgets
 
-Виджеты это то как формы будут представлены на web-страницы, то есть виджеты отвечают за генерацию HTML-кода для полей форм.
-**[Документация](https://docs.djangoproject.com/en/3.2/ref/forms/widgets/)**
+Виджеты это то как формы будут представлены на web-страницы, то есть виджеты отвечают за генерацию HTML-кода для полей форм.  
+**[Документация](https://docs.djangoproject.com/en/3.2/ref/forms/widgets/)**  
 
-![img](widgets.png)
+![img](widgets.png)  
 
 
-<a id="org388c054"></a>
+<a id="orge18c9b7"></a>
 
 # Widgets
 
-Можно добавлять стили и другие атрибуты виджетам
+Можно добавлять стили и другие атрибуты виджетам  
 
 ```python
 class CommentForm(forms.Form):
@@ -550,7 +551,7 @@ class CommentForm(forms.Form):
 ```
 
 
-<a id="org71b67f9"></a>
+<a id="orgc76767a"></a>
 
 # Widgets
 
@@ -572,7 +573,7 @@ class CommentForm(ModelForm):
 ```
 
 
-<a id="org86831b8"></a>
+<a id="org10eac6b"></a>
 
 # Widgets
 
@@ -588,7 +589,16 @@ class CommentForm(ModelForm):
 ```
 
 
-<a id="orgf4f438c"></a>
+<a id="org4b907f0"></a>
+
+# Немного практики
+
+-   <span class="underline"><span class="underline">[Примеры](https://docs.djangoproject.com/en/2.2/ref/forms/widgets/)</span></span>
+-   <span class="underline"><span class="underline">[Ещё примеры](https://www.javatpoint.com/django-form-widget)</span></span>
+-   <span class="underline"><span class="underline">[django-colorfield](https://pypi.org/project/django-colorfield/)</span></span>
+
+
+<a id="org8c7aa6b"></a>
 
 # Вопросы-ответы
 

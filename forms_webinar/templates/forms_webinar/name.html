@@ -9,5 +9,8 @@
 <hr style="background-color:navy;color:red;padding:1px;" />
 {% localize on %}
 <p style="margin-right:10pt;text-align:right">{{name}} | {% now "r" %}</p>
+<br/>
+<br/>
+<h3><a href="{% url 'list_names' %}">Главная</a></h3>
 {% endlocalize %}
 {% endblock %}

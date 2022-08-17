@@ -359,6 +359,10 @@
     <input type="text" name="comment"
            size="40" required>
   #+END_SRC
+* Немного практики
+  - __[[https://docs.djangoproject.com/en/2.2/ref/forms/widgets/][Примеры]]__
+  - __[[https://www.javatpoint.com/django-form-widget][Ещё примеры]]__
+  - __[[https://pypi.org/project/django-colorfield/][django-colorfield]]__
 * Вопросы-ответы
   #+ATTR_LATEX: :width .6\textwidth
   [[file:questions.jpg]]

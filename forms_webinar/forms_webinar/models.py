@@ -1,8 +1,10 @@
 from django.db import models
 from django.urls import reverse_lazy
 
+
 class NameModel(models.Model):
     name = models.CharField(max_length=100)
+    birthday = models.DateField(null=True, blank=False)
 
     def __str__(self):
         return f"{self.name} ({self.pk})"
