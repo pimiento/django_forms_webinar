@@ -68,11 +68,15 @@ def name_detail(request, pk):
 
 
 def my_form(request):
-    form = NameForm()
+    form = NameForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("name")  # -> HTTP 301/2
     return render(
         request,
         'forms_webinar/my_form.html',
         {
             'form': form
         }
-    )
+    ) # -> HTTP 200

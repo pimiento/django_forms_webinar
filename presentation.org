@@ -159,7 +159,7 @@
 
     def validate_even(value):
         if value % 2 != 0:
-            raise Validationerror(
+            raise ValidationError(
                 '%(value) нечётно',
                 params={'value': value}
             )

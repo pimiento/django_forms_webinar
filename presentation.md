@@ -1,47 +1,47 @@
-- [HTML](#orgae4cd2e)
-- [Django templates](#org3dcbb84)
-- [наследование](#orgcd3c19a)
-- [передача переменных](#org867ac54)
-- [Дополнительная литература](#org655f5e8)
-- [HTML формы](#org4dc7d00)
-- [HTML формы](#org4aba72c)
-- [HTML формы](#org9195320)
-- [Django формы](#orgc559a42)
-- [Django формы](#org05ee131)
-- [Django формы](#org302fa98)
-  - [<span class="underline">[Form Fields](https://docs.djangoproject.com/en/3.2/ref/forms/fields/#built-in-field-classes)</span>](#org9c11e0e)
-- [Bound / Unbond forms](#org49c49cb)
-- [Unbound](#org14465c5)
-- [Bound](#orgc98c95e)
-- [Валидация форм](#org308c3c0)
-- [Валидаторы](#org0e3e49f)
-- [Валидаторы](#org4a6c67c)
-- [Валидаторы](#orgcd60a4c)
-- [Forms Workflow](#orgd7589de)
-- [Рендеринг форм вручную](#org4967799)
-- [Безопасность](#orgc4594a1)
-- [CSRF](#org473c328)
-- [CSRF](#org0420332)
-- [CSRF](#org36e5c6e)
-- [ModelForm](#orgad4cb99)
-- [ModelForm](#orgc61542b)
-- [ModelForm](#org339e09e)
-  - [save(commit=False)](#org61a585b)
-- [ModelForm](#org48d3243)
-- [ModelForm](#org165d60c)
-- [ModelForm](#org4f64408)
-- [ModelForm](#orgd271942)
-- [ModelForm](#orgf35deb0)
-- [Widgets](#org38364ac)
-- [Widgets](#orge18c9b7)
-- [Widgets](#orgc76767a)
-- [Widgets](#org10eac6b)
-- [Немного практики](#org4b907f0)
-- [Вопросы-ответы](#org8c7aa6b)
+- [HTML](#org14f6224)
+- [Django templates](#org63e2c3d)
+- [наследование](#org6b5fbc1)
+- [передача переменных](#orgd5dd604)
+- [Дополнительная литература](#org12a79ad)
+- [HTML формы](#org77ac8b1)
+- [HTML формы](#org6c71764)
+- [HTML формы](#org900b7d3)
+- [Django формы](#orgbb7f754)
+- [Django формы](#org4cd64af)
+- [Django формы](#org9dba36d)
+  - [<span class="underline">[Form Fields](https://docs.djangoproject.com/en/3.2/ref/forms/fields/#built-in-field-classes)</span>](#orgac68da6)
+- [Bound / Unbond forms](#org0e55fca)
+- [Unbound](#org1add42b)
+- [Bound](#org057de00)
+- [Валидация форм](#orgc2e5ec6)
+- [Валидаторы](#org9871f1d)
+- [Валидаторы](#org3eb238c)
+- [Валидаторы](#org104482b)
+- [Forms Workflow](#orge81f6b6)
+- [Рендеринг форм вручную](#org07e02fc)
+- [Безопасность](#org24c12dd)
+- [CSRF](#org2630e63)
+- [CSRF](#org30870a8)
+- [CSRF](#org6013a39)
+- [ModelForm](#orgddbf278)
+- [ModelForm](#orgd96d77c)
+- [ModelForm](#org518a4e7)
+  - [save(commit=False)](#orgf065cef)
+- [ModelForm](#orga2665f4)
+- [ModelForm](#org7774f3f)
+- [ModelForm](#org5c6ee02)
+- [ModelForm](#orgc317505)
+- [ModelForm](#org01c8a59)
+- [Widgets](#orgcdf5f16)
+- [Widgets](#org365744e)
+- [Widgets](#orgac53e1e)
+- [Widgets](#org62c3f30)
+- [Немного практики](#org47d97eb)
+- [Вопросы-ответы](#org24c1521)
 
 
 
-<a id="orgae4cd2e"></a>
+<a id="org14f6224"></a>
 
 # HTML
 
@@ -63,7 +63,7 @@
 ```
 
 
-<a id="org3dcbb84"></a>
+<a id="org63e2c3d"></a>
 
 # Django templates
 
@@ -84,7 +84,7 @@
 ```
 
 
-<a id="orgcd3c19a"></a>
+<a id="org6b5fbc1"></a>
 
 # наследование
 
@@ -92,7 +92,7 @@
 -   **include:** вставить на место **{% include &#x2026; %}** содержимое подключаемого шаблона.
 
 
-<a id="org867ac54"></a>
+<a id="orgd5dd604"></a>
 
 # передача переменных
 
@@ -100,7 +100,7 @@
 -   Нужные вам переменные вы передаёте из вьюхи во [время рендеринга](https://docs.djangoproject.com/en/4.0/topics/http/shortcuts/#render)
 
 
-<a id="org655f5e8"></a>
+<a id="org12a79ad"></a>
 
 # Дополнительная литература
 
@@ -109,7 +109,7 @@
 -   <https://habr.com/ru/post/23132/?ysclid=l2hw076rbl>
 
 
-<a id="org4dc7d00"></a>
+<a id="org77ac8b1"></a>
 
 # HTML формы
 
@@ -129,7 +129,7 @@
 ![img](simple_html_form.png)  
 
 
-<a id="org4aba72c"></a>
+<a id="org6c71764"></a>
 
 # HTML формы
 
@@ -138,7 +138,7 @@
 ![img](html_form1.jpg)  
 
 
-<a id="org9195320"></a>
+<a id="org900b7d3"></a>
 
 # HTML формы
 
@@ -147,7 +147,7 @@
 ![img](html_form.png)  
 
 
-<a id="orgc559a42"></a>
+<a id="orgbb7f754"></a>
 
 # Django формы
 
@@ -168,7 +168,7 @@ form = MessageForm(
 *initial* заполнит форму какими-то данными. При рендеринге это будет значение атрибута *value* в HTML. Обычно мы передаём туда *request.POST*  
 
 
-<a id="org05ee131"></a>
+<a id="org4cd64af"></a>
 
 # Django формы
 
@@ -191,12 +191,12 @@ form = MessageForm(
 ```
 
 
-<a id="org302fa98"></a>
+<a id="org9dba36d"></a>
 
 # Django формы
 
 
-<a id="org9c11e0e"></a>
+<a id="orgac68da6"></a>
 
 ## <span class="underline">[Form Fields](https://docs.djangoproject.com/en/3.2/ref/forms/fields/#built-in-field-classes)</span>
 
@@ -204,7 +204,7 @@ form = MessageForm(
 ![img](builtin_fields.png)  
 
 
-<a id="org49c49cb"></a>
+<a id="org0e55fca"></a>
 
 # Bound / Unbond forms
 
@@ -214,7 +214,7 @@ form = MessageForm(
 -   **bound:** — форма заполнена данными
 
 
-<a id="org14465c5"></a>
+<a id="org1add42b"></a>
 
 # Unbound
 
@@ -226,7 +226,7 @@ form.is_bound   # -> False
 ```
 
 
-<a id="orgc98c95e"></a>
+<a id="org057de00"></a>
 
 # Bound
 
@@ -241,7 +241,7 @@ form.is_bound   # -> True
 ```
 
 
-<a id="org308c3c0"></a>
+<a id="orgc2e5ec6"></a>
 
 # Валидация форм
 
@@ -260,7 +260,7 @@ form.errors
 ```
 
 
-<a id="org0e3e49f"></a>
+<a id="org9871f1d"></a>
 
 # Валидаторы
 
@@ -273,14 +273,14 @@ from django.core.exceptions import (
 
 def validate_even(value):
     if value % 2 != 0:
-        raise Validationerror(
+        raise ValidationError(
             '%(value) нечётно',
             params={'value': value}
         )
 ```
 
 
-<a id="org4a6c67c"></a>
+<a id="org3eb238c"></a>
 
 # Валидаторы
 
@@ -296,7 +296,7 @@ class EvenNumbersForm(forms.Form):
 *validators* добавит валидаторы к уже существующему базовому валидатору *IntegerField*  
 
 
-<a id="orgcd60a4c"></a>
+<a id="org104482b"></a>
 
 # Валидаторы
 
@@ -305,14 +305,14 @@ class EvenNumbersForm(forms.Form):
 ![img](validators.png)  
 
 
-<a id="orgd7589de"></a>
+<a id="orge81f6b6"></a>
 
 # Forms Workflow
 
 ![img](form_handling_-_standard.png)  
 
 
-<a id="org4967799"></a>
+<a id="org07e02fc"></a>
 
 # Рендеринг форм вручную
 
@@ -333,7 +333,7 @@ class EvenNumbersForm(forms.Form):
 ```
 
 
-<a id="orgc4594a1"></a>
+<a id="org24c12dd"></a>
 
 # Безопасность
 
@@ -342,7 +342,7 @@ class EvenNumbersForm(forms.Form):
 <https://docs.djangoproject.com/en/3.2/topics/security/>  
 
 
-<a id="org473c328"></a>
+<a id="org2630e63"></a>
 
 # CSRF
 
@@ -351,7 +351,7 @@ class EvenNumbersForm(forms.Form):
 ![img](csrf.png)  
 
 
-<a id="org0420332"></a>
+<a id="org30870a8"></a>
 
 # CSRF
 
@@ -371,7 +371,7 @@ class EvenNumbersForm(forms.Form):
 ```
 
 
-<a id="org36e5c6e"></a>
+<a id="org6013a39"></a>
 
 # CSRF
 
@@ -387,14 +387,14 @@ class EvenNumbersForm(forms.Form):
 ![img](csrf_html.png)  
 
 
-<a id="orgad4cb99"></a>
+<a id="orgddbf278"></a>
 
 # ModelForm
 
 [**Прекрасная документация**](https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/)  
 
 
-<a id="orgc61542b"></a>
+<a id="orgd96d77c"></a>
 
 # ModelForm
 
@@ -411,12 +411,12 @@ form.save()
 ```
 
 
-<a id="org339e09e"></a>
+<a id="org518a4e7"></a>
 
 # ModelForm
 
 
-<a id="org61a585b"></a>
+<a id="orgf065cef"></a>
 
 ## save(commit=False)
 
@@ -432,7 +432,7 @@ model = form.save(commit=False)
 ```
 
 
-<a id="org48d3243"></a>
+<a id="orga2665f4"></a>
 
 # ModelForm
 
@@ -451,7 +451,7 @@ from.save()
 ```
 
 
-<a id="org165d60c"></a>
+<a id="org7774f3f"></a>
 
 # ModelForm
 
@@ -469,7 +469,7 @@ form.save()
 ```
 
 
-<a id="org4f64408"></a>
+<a id="org5c6ee02"></a>
 
 # ModelForm
 
@@ -483,7 +483,7 @@ model.save()
 ```
 
 
-<a id="orgd271942"></a>
+<a id="orgc317505"></a>
 
 # ModelForm
 
@@ -500,7 +500,7 @@ class Article(models.Model):
 ```
 
 
-<a id="orgf35deb0"></a>
+<a id="org01c8a59"></a>
 
 # ModelForm
 
@@ -519,7 +519,7 @@ class ArticleForm(ModelForm):
 ```
 
 
-<a id="org38364ac"></a>
+<a id="orgcdf5f16"></a>
 
 # Widgets
 
@@ -529,7 +529,7 @@ class ArticleForm(ModelForm):
 ![img](widgets.png)  
 
 
-<a id="orge18c9b7"></a>
+<a id="org365744e"></a>
 
 # Widgets
 
@@ -551,7 +551,7 @@ class CommentForm(forms.Form):
 ```
 
 
-<a id="orgc76767a"></a>
+<a id="orgac53e1e"></a>
 
 # Widgets
 
@@ -573,7 +573,7 @@ class CommentForm(ModelForm):
 ```
 
 
-<a id="org10eac6b"></a>
+<a id="org62c3f30"></a>
 
 # Widgets
 
@@ -589,7 +589,7 @@ class CommentForm(ModelForm):
 ```
 
 
-<a id="org4b907f0"></a>
+<a id="org47d97eb"></a>
 
 # Немного практики
 
@@ -598,7 +598,7 @@ class CommentForm(ModelForm):
 -   <span class="underline"><span class="underline">[django-colorfield](https://pypi.org/project/django-colorfield/)</span></span>
 
 
-<a id="org8c7aa6b"></a>
+<a id="org24c1521"></a>
 
 # Вопросы-ответы
 
